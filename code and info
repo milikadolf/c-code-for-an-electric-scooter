@@ -1,0 +1,53 @@
+#include <iostream>
+
+class ElectricScooter {
+private:
+    int batteryLevel;
+    int speed;
+
+public:
+    ElectricScooter() : batteryLevel(100), speed(0) {}
+
+    void accelerate() {
+        if (batteryLevel > 0) {
+            speed += 5;
+            batteryLevel -= 5;
+            std::cout << "Accelerating... Speed: " << speed << " km/h\n";
+        } else {
+            std::cout << "Battery empty. Cannot accelerate.\n";
+        }
+    }
+
+    void brake() {
+        if (speed > 0) {
+            speed -= 5;
+            std::cout << "Braking... Speed: " << speed << " km/h\n";
+        } else {
+            std::cout << "Already at rest. Cannot brake further.\n";
+        }
+    }
+
+    void chargeBattery() {
+        batteryLevel = 100;
+        std::cout << "Battery charged to 100%.\n";
+    }
+
+    void displayStatus() {
+        std::cout << "Battery Level: " << batteryLevel << "%\n";
+        std::cout << "Current Speed: " << speed << " km/h\n";
+    }
+};
+
+int main() {
+    ElectricScooter scooter;
+
+    scooter.accelerate();
+    scooter.brake();
+    scooter.displayStatus();
+
+    scooter.chargeBattery();
+    scooter.accelerate();
+    scooter.displayStatus();
+
+    return 0;
+}
